@@ -1,0 +1,781 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type BatchPayload {
+  count: Int!
+}
+
+input BoolFilter {
+  equals: Boolean
+  not: BooleanFilter
+}
+
+input BooleanFilter {
+  equals: Boolean
+  not: BooleanFilter
+}
+
+type Category {
+  createdAt: DateTime!
+  id: ID!
+  name: String!
+  posts: [Post!]!
+  slug: String!
+  updatedAt: DateTime!
+}
+
+type CategoryCountAggregate {
+  _all: Int!
+  createdAt: Int
+  id: Int
+  name: Int
+  slug: Int
+  updatedAt: Int
+}
+
+input CategoryCreateNestedManyWithoutPostsInput {
+  connect: [CategoryWhereUniqueInput!]
+  connectOrCreate: [CategoryCreateOrConnectWithoutpostsInput!]
+  create: [CategoryCreateWithoutPostsInput!]
+}
+
+input CategoryCreateOrConnectWithoutpostsInput {
+  create: CategoryCreateWithoutPostsInput!
+  where: CategoryWhereUniqueInput!
+}
+
+input CategoryCreateWithoutPostsInput {
+  createdAt: DateTime
+  id: String
+  name: String!
+  slug: String!
+  updatedAt: DateTime
+}
+
+input CategoryListRelationFilter {
+  every: CategoryWhereInput
+  none: CategoryWhereInput
+  some: CategoryWhereInput
+}
+
+type CategoryMaxAggregate {
+  createdAt: DateTime
+  id: String
+  name: String
+  slug: String
+  updatedAt: DateTime
+}
+
+type CategoryMinAggregate {
+  createdAt: DateTime
+  id: String
+  name: String
+  slug: String
+  updatedAt: DateTime
+}
+
+input CategoryOrderByInput {
+  createdAt: SortOrder
+  id: SortOrder
+  name: SortOrder
+  slug: SortOrder
+  updatedAt: SortOrder
+}
+
+enum CategoryScalarFieldEnum {
+  createdAt
+  id
+  name
+  slug
+  updatedAt
+}
+
+input CategoryScalarWhereInput {
+  AND: [CategoryScalarWhereInput!]
+  NOT: [CategoryScalarWhereInput!]
+  OR: [CategoryScalarWhereInput!]
+  createdAt: DateTimeFilter
+  id: StringFilter
+  name: StringFilter
+  slug: StringFilter
+  updatedAt: DateTimeFilter
+}
+
+input CategoryUpdateManyMutationInput {
+  createdAt: DateTime
+  id: String
+  name: String
+  slug: String
+  updatedAt: DateTime
+}
+
+input CategoryUpdateManyWithWhereWithoutPostsInput {
+  data: CategoryUpdateManyMutationInput!
+  where: CategoryScalarWhereInput!
+}
+
+input CategoryUpdateManyWithoutPostsInput {
+  connect: [CategoryWhereUniqueInput!]
+  connectOrCreate: [CategoryCreateOrConnectWithoutpostsInput!]
+  create: [CategoryCreateWithoutPostsInput!]
+  delete: [CategoryWhereUniqueInput!]
+  deleteMany: [CategoryScalarWhereInput!]
+  disconnect: [CategoryWhereUniqueInput!]
+  set: [CategoryWhereUniqueInput!]
+  update: [CategoryUpdateWithWhereUniqueWithoutPostsInput!]
+  updateMany: [CategoryUpdateManyWithWhereWithoutPostsInput!]
+  upsert: [CategoryUpsertWithWhereUniqueWithoutPostsInput!]
+}
+
+input CategoryUpdateWithWhereUniqueWithoutPostsInput {
+  data: CategoryUpdateWithoutPostsInput!
+  where: CategoryWhereUniqueInput!
+}
+
+input CategoryUpdateWithoutPostsInput {
+  createdAt: DateTime
+  id: String
+  name: String
+  slug: String
+  updatedAt: DateTime
+}
+
+input CategoryUpsertWithWhereUniqueWithoutPostsInput {
+  create: CategoryCreateWithoutPostsInput!
+  update: CategoryUpdateWithoutPostsInput!
+  where: CategoryWhereUniqueInput!
+}
+
+input CategoryWhereInput {
+  AND: [CategoryWhereInput!]
+  NOT: [CategoryWhereInput!]
+  OR: [CategoryWhereInput!]
+  createdAt: DateTimeFilter
+  id: StringFilter
+  name: StringFilter
+  posts: PostListRelationFilter
+  slug: StringFilter
+  updatedAt: DateTimeFilter
+}
+
+input CategoryWhereUniqueInput {
+  id: String
+  slug: String
+}
+
+input ChangePasswordInput {
+  newPassword: String!
+  oldPassword: String!
+  token: String!
+}
+
+input CreateCategoryInput {
+  name: String!
+}
+
+input CreatePostInput {
+  categories: [CreateCategoryInput!]
+  content: String!
+  published: Boolean
+  title: String!
+}
+
+input CreateProfileInput {
+  bio: String
+  firstName: String
+  lastName: String
+  username: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+input DateTimeFilter {
+  equals: DateTime
+  gt: DateTime
+  gte: DateTime
+  in: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  not: DateTimeFilter
+  notIn: [DateTime!]
+}
+
+input EnumRoleFilter {
+  equals: Role
+  in: [Role!]
+  not: EnumRoleFilter
+  notIn: [Role!]
+}
+
+input LoginUserInput {
+  email: String!
+  password: String!
+}
+
+type Mutation {
+  adminCreateOneUser(data: UserCreateInput!): user!
+  adminDeleteManyUser(where: UserWhereInput!): BatchPayload!
+  adminDeleteOneUser(where: UserWhereUniqueInput!): user!
+  adminUpdateManyUser(data: UserUpdateInput!, where: UserWhereInput!): BatchPayload!
+  adminUpdateOneUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): user!
+  adminUpsertOneUser(data: UserCreateInput!): user!
+  changePassword(data: ChangePasswordInput!): user!
+  createCategories(data: [CreateCategoryInput!]!): [category!]!
+  createCategory(data: CreateCategoryInput!): category!
+  createPost(data: CreatePostInput!): post!
+  createProfile(data: CreateProfileInput!): profile!
+  deleteAccount: user!
+  deleteCategory(where: CategoryWhereUniqueInput!): category!
+  deletePost(where: PostWhereUniqueInput!): post!
+  forgotPassword(email: String!): String!
+  login(data: LoginUserInput!): user!
+  logout: Boolean!
+  refreshToken: String!
+  register(data: RegisterUserInput!): user!
+  updateAccount(data: UpdateUserInput!): user!
+  updateCategory(data: UpdateCategoryInput!, where: CategoryWhereUniqueInput!): category!
+  updatePost(data: UpdatePostInput!, where: PostWhereUniqueInput!): post!
+  updateProfile(data: UpdateProfileInput!, where: ProfileWhereUniqueInput!): profile!
+}
+
+type Post {
+  author: User
+  authorId: String
+  categories: [Category!]!
+  content: String!
+  createdAt: DateTime!
+  id: ID!
+  published: Boolean!
+  slug: String!
+  title: String!
+  updatedAt: DateTime!
+}
+
+type PostCountAggregate {
+  _all: Int!
+  authorId: Int
+  content: Int
+  createdAt: Int
+  id: Int
+  published: Int
+  slug: Int
+  title: Int
+  updatedAt: Int
+}
+
+input PostCreateNestedManyWithoutAuthorInput {
+  connect: [PostWhereUniqueInput!]
+  connectOrCreate: [PostCreateOrConnectWithoutauthorInput!]
+  create: [PostCreateWithoutAuthorInput!]
+}
+
+input PostCreateOrConnectWithoutauthorInput {
+  create: PostCreateWithoutAuthorInput!
+  where: PostWhereUniqueInput!
+}
+
+input PostCreateWithoutAuthorInput {
+  categories: CategoryCreateNestedManyWithoutPostsInput
+  content: String!
+  createdAt: DateTime
+  id: String
+  published: Boolean
+  slug: String!
+  title: String!
+  updatedAt: DateTime
+}
+
+input PostListRelationFilter {
+  every: PostWhereInput
+  none: PostWhereInput
+  some: PostWhereInput
+}
+
+type PostMaxAggregate {
+  authorId: String
+  content: String
+  createdAt: DateTime
+  id: String
+  published: Boolean
+  slug: String
+  title: String
+  updatedAt: DateTime
+}
+
+type PostMinAggregate {
+  authorId: String
+  content: String
+  createdAt: DateTime
+  id: String
+  published: Boolean
+  slug: String
+  title: String
+  updatedAt: DateTime
+}
+
+input PostOrderByInput {
+  author: UserOrderByInput
+  authorId: SortOrder
+  content: SortOrder
+  createdAt: SortOrder
+  id: SortOrder
+  published: SortOrder
+  slug: SortOrder
+  title: SortOrder
+  updatedAt: SortOrder
+}
+
+enum PostScalarFieldEnum {
+  authorId
+  content
+  createdAt
+  id
+  published
+  slug
+  title
+  updatedAt
+}
+
+input PostScalarWhereInput {
+  AND: [PostScalarWhereInput!]
+  NOT: [PostScalarWhereInput!]
+  OR: [PostScalarWhereInput!]
+  authorId: StringFilter
+  content: StringFilter
+  createdAt: DateTimeFilter
+  id: StringFilter
+  published: BoolFilter
+  slug: StringFilter
+  title: StringFilter
+  updatedAt: DateTimeFilter
+}
+
+input PostUpdateManyMutationInput {
+  content: String
+  createdAt: DateTime
+  id: String
+  published: Boolean
+  slug: String
+  title: String
+  updatedAt: DateTime
+}
+
+input PostUpdateManyWithWhereWithoutAuthorInput {
+  data: PostUpdateManyMutationInput!
+  where: PostScalarWhereInput!
+}
+
+input PostUpdateManyWithoutAuthorInput {
+  connect: [PostWhereUniqueInput!]
+  connectOrCreate: [PostCreateOrConnectWithoutauthorInput!]
+  create: [PostCreateWithoutAuthorInput!]
+  delete: [PostWhereUniqueInput!]
+  deleteMany: [PostScalarWhereInput!]
+  disconnect: [PostWhereUniqueInput!]
+  set: [PostWhereUniqueInput!]
+  update: [PostUpdateWithWhereUniqueWithoutAuthorInput!]
+  updateMany: [PostUpdateManyWithWhereWithoutAuthorInput!]
+  upsert: [PostUpsertWithWhereUniqueWithoutAuthorInput!]
+}
+
+input PostUpdateWithWhereUniqueWithoutAuthorInput {
+  data: PostUpdateWithoutAuthorInput!
+  where: PostWhereUniqueInput!
+}
+
+input PostUpdateWithoutAuthorInput {
+  categories: CategoryUpdateManyWithoutPostsInput
+  content: String
+  createdAt: DateTime
+  id: String
+  published: Boolean
+  slug: String
+  title: String
+  updatedAt: DateTime
+}
+
+input PostUpsertWithWhereUniqueWithoutAuthorInput {
+  create: PostCreateWithoutAuthorInput!
+  update: PostUpdateWithoutAuthorInput!
+  where: PostWhereUniqueInput!
+}
+
+input PostWhereInput {
+  AND: [PostWhereInput!]
+  NOT: [PostWhereInput!]
+  OR: [PostWhereInput!]
+  author: UserWhereInput
+  authorId: StringFilter
+  categories: CategoryListRelationFilter
+  content: StringFilter
+  createdAt: DateTimeFilter
+  id: StringFilter
+  published: BoolFilter
+  slug: StringFilter
+  title: StringFilter
+  updatedAt: DateTimeFilter
+}
+
+input PostWhereUniqueInput {
+  id: String
+  slug: String
+}
+
+type Profile {
+  bio: String
+  createdAt: DateTime!
+  firstName: String
+  id: ID!
+  lastName: String
+  updatedAt: DateTime!
+  user: User
+  userId: String
+  username: String!
+}
+
+type ProfileCountAggregate {
+  _all: Int!
+  bio: Int
+  createdAt: Int
+  firstName: Int
+  id: Int
+  lastName: Int
+  updatedAt: Int
+  userId: Int
+  username: Int
+}
+
+input ProfileCreateNestedOneWithoutUserInput {
+  connect: ProfileWhereUniqueInput
+  connectOrCreate: ProfileCreateOrConnectWithoutuserInput
+  create: ProfileCreateWithoutUserInput
+}
+
+input ProfileCreateOneWithoutUserInput {
+  connect: ProfileWhereUniqueInput
+  connectOrCreate: ProfileCreateOrConnectWithoutuserInput
+  create: ProfileCreateWithoutUserInput
+}
+
+input ProfileCreateOrConnectWithoutuserInput {
+  create: ProfileCreateWithoutUserInput!
+  where: ProfileWhereUniqueInput!
+}
+
+input ProfileCreateWithoutUserInput {
+  bio: String
+  createdAt: DateTime
+  firstName: String
+  id: String
+  lastName: String
+  updatedAt: DateTime
+  username: String!
+}
+
+type ProfileMaxAggregate {
+  bio: String
+  createdAt: DateTime
+  firstName: String
+  id: String
+  lastName: String
+  updatedAt: DateTime
+  userId: String
+  username: String
+}
+
+type ProfileMinAggregate {
+  bio: String
+  createdAt: DateTime
+  firstName: String
+  id: String
+  lastName: String
+  updatedAt: DateTime
+  userId: String
+  username: String
+}
+
+input ProfileOrderByInput {
+  bio: SortOrder
+  createdAt: SortOrder
+  firstName: SortOrder
+  id: SortOrder
+  lastName: SortOrder
+  updatedAt: SortOrder
+  userId: SortOrder
+  username: SortOrder
+}
+
+input ProfileUpdateOneWithoutUserInput {
+  connect: ProfileWhereUniqueInput
+  connectOrCreate: ProfileCreateOrConnectWithoutuserInput
+  create: ProfileCreateWithoutUserInput
+  delete: Boolean
+  disconnect: Boolean
+  update: ProfileUpdateWithoutUserInput
+  upsert: ProfileUpsertWithoutUserInput
+}
+
+input ProfileUpdateWithoutUserInput {
+  bio: String
+  createdAt: DateTime
+  firstName: String
+  id: String
+  lastName: String
+  updatedAt: DateTime
+  username: String
+}
+
+input ProfileUpsertWithoutUserInput {
+  create: ProfileCreateWithoutUserInput!
+  update: ProfileUpdateWithoutUserInput!
+}
+
+input ProfileWhereInput {
+  AND: [ProfileWhereInput!]
+  NOT: [ProfileWhereInput!]
+  OR: [ProfileWhereInput!]
+  bio: StringFilter
+  createdAt: DateTimeFilter
+  firstName: StringFilter
+  id: StringFilter
+  lastName: StringFilter
+  updatedAt: DateTimeFilter
+  user: UserWhereInput
+  userId: StringFilter
+  username: StringFilter
+}
+
+input ProfileWhereUniqueInput {
+  id: String
+  userId: String
+  username: String
+}
+
+type Query {
+  adminCountManyUsers(cursor: UserWhereUniqueInput, distinct: [UserScalarFieldEnum!], orderBy: [UserOrderByInput!], skip: Int, take: Int, where: UserWhereInput): Int!
+  adminFindFirstUser(cursor: UserWhereUniqueInput, distinct: [UserScalarFieldEnum!], orderBy: [UserOrderByInput!], skip: Int, take: Int, where: UserWhereInput): user!
+  adminFindManyUser(cursor: UserWhereUniqueInput, distinct: [UserScalarFieldEnum!], orderBy: [UserOrderByInput!], skip: Int, take: Int, where: UserWhereInput): [user!]!
+  adminFindUniqueUser(where: UserWhereUniqueInput!): user!
+  categories(cursor: CategoryWhereUniqueInput, distinct: [CategoryScalarFieldEnum!], orderBy: [CategoryOrderByInput!], skip: Int, take: Int, where: CategoryWhereInput): [category!]!
+  category(where: CategoryWhereUniqueInput!): category!
+  hello(name: String!): String!
+  helloWorld: String!
+  me: user!
+  post(where: PostWhereUniqueInput!): post!
+  posts(cursor: PostWhereUniqueInput, distinct: [PostScalarFieldEnum!], orderBy: [PostOrderByInput!], skip: Int, take: Int, where: PostWhereInput): [post!]!
+  profile(where: UserWhereUniqueInput!): profile!
+  profileCurrentUser: profile!
+}
+
+enum QueryMode {
+  default
+  insensitive
+}
+
+input RegisterUserInput {
+  email: String!
+  password: String!
+  profile: ProfileCreateOneWithoutUserInput
+}
+
+enum Role {
+  ADMIN
+  USER
+}
+
+enum SortOrder {
+  asc
+  desc
+}
+
+input StringFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  mode: QueryMode
+  not: StringFilter
+  notIn: [String!]
+  startsWith: String
+}
+
+input UpdateCategoryInput {
+  name: String
+}
+
+input UpdatePostInput {
+  content: String
+  published: Boolean
+  title: String
+}
+
+input UpdateProfileInput {
+  bio: String
+  firstName: String
+  lastName: String
+  username: String
+}
+
+input UpdateUserInput {
+  currentHashedRefreshToken: String
+  email: String
+  password: String
+  profile: ProfileUpdateOneWithoutUserInput
+}
+
+type User {
+  createdAt: DateTime!
+  currentHashedRefreshToken: String
+  email: String!
+  id: ID!
+  password: String!
+  posts: [Post!]!
+  profile: Profile
+  role: Role!
+  updatedAt: DateTime!
+}
+
+type UserCountAggregate {
+  _all: Int!
+  createdAt: Int
+  currentHashedRefreshToken: Int
+  email: Int
+  id: Int
+  password: Int
+  role: Int
+  updatedAt: Int
+}
+
+input UserCreateInput {
+  createdAt: DateTime
+  currentHashedRefreshToken: String
+  email: String!
+  id: String
+  password: String!
+  posts: PostCreateNestedManyWithoutAuthorInput
+  profile: ProfileCreateNestedOneWithoutUserInput
+  role: Role
+  updatedAt: DateTime
+}
+
+type UserMaxAggregate {
+  createdAt: DateTime
+  currentHashedRefreshToken: String
+  email: String
+  id: String
+  password: String
+  role: Role
+  updatedAt: DateTime
+}
+
+type UserMinAggregate {
+  createdAt: DateTime
+  currentHashedRefreshToken: String
+  email: String
+  id: String
+  password: String
+  role: Role
+  updatedAt: DateTime
+}
+
+input UserOrderByInput {
+  createdAt: SortOrder
+  currentHashedRefreshToken: SortOrder
+  email: SortOrder
+  id: SortOrder
+  password: SortOrder
+  profile: ProfileOrderByInput
+  role: SortOrder
+  updatedAt: SortOrder
+}
+
+enum UserScalarFieldEnum {
+  createdAt
+  email
+  id
+  password
+  role
+  updatedAt
+}
+
+input UserUpdateInput {
+  createdAt: DateTime
+  currentHashedRefreshToken: String
+  email: String
+  id: String
+  password: String
+  posts: PostUpdateManyWithoutAuthorInput
+  profile: ProfileUpdateOneWithoutUserInput
+  role: Role
+  updatedAt: DateTime
+}
+
+input UserWhereInput {
+  AND: [UserWhereInput!]
+  NOT: [UserWhereInput!]
+  OR: [UserWhereInput!]
+  createdAt: DateTimeFilter
+  currentHashedRefreshToken: StringFilter
+  email: StringFilter
+  id: StringFilter
+  password: StringFilter
+  posts: PostListRelationFilter
+  profile: ProfileWhereInput
+  role: EnumRoleFilter
+  updatedAt: DateTimeFilter
+}
+
+input UserWhereUniqueInput {
+  email: String
+  id: String
+}
+
+type category {
+  createdAt: DateTime!
+  id: ID!
+  name: String!
+  posts: [post!]
+  slug: String!
+  updatedAt: DateTime!
+}
+
+type post {
+  author: user
+  categories: [category!]
+  content: String!
+  createdAt: DateTime!
+  id: ID!
+  published: String!
+  slug: String!
+  title: String!
+  updatedAt: DateTime!
+}
+
+type profile {
+  bio: String
+  createdAt: DateTime!
+  firstName: String
+  id: ID!
+  lastName: String
+  updatedAt: DateTime!
+  user: user
+  username: String
+}
+
+type user {
+  createdAt: DateTime!
+  email: String!
+  id: ID!
+  posts: [post!]
+  profile: profile
+  role: String!
+  updatedAt: DateTime!
+}
